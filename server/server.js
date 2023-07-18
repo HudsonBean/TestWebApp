@@ -1,5 +1,6 @@
 //Services
 const express = require("express");
+const cors = require("cors");
 
 //Variables
 const app = express();
@@ -9,6 +10,10 @@ let n = 0;
 //Functions
 
 //Main
+
+//Middleware
+app.use(express.json());
+app.use(cors());
 
 // Start the server
 app.listen(PORT, () => {
@@ -20,12 +25,12 @@ app.listen(PORT, () => {
 // Routing
 // Get
 app.get("/api/dev", (req, res) => {
-  res.status(200).json({ body: `Hello from server! Current number: ${n}` });
+  res.status(200).json({ body: `Hello from server! Current Number: ${n}` });
 });
 // Post
 app.post("/api/dev", (req, res) => {
   if (req.body) {
-    n = req.body;
+    n = req.body.content;
     res.status(200).json({ body: `Hello from server! Current number: ${n}` });
   }
 });
