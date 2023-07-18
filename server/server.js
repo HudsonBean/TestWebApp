@@ -1,6 +1,6 @@
 //Services
 const express = require("express");
-
+const bodyParser = require("body-parser");
 //Variables
 const APP = express();
 const PORT = process.env.PORT || 8080;
@@ -16,6 +16,14 @@ APP.listen(PORT, () => {
 
 // Routing
 APP.get("/api/dev", (req, res) => {
-  console.log(req.content);
-  res.status(200).json({ body: "Hello from server!" });
+  res.status(200).json({ body: `"Hello!" -Server` });
+});
+
+APP.post("/api/dev", bodyParser.json(), (req, res) => {
+  let message = '"' + req.body.content + '"' + " -Server";
+  if (!req.body.content) {
+    res.status(400).json({ body: "An error has occured! :(" });
+  } else {
+    res.status(202).json({ body: message });
+  }
 });
