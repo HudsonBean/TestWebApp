@@ -17,5 +17,5 @@ APP.listen(PORT, () => {
 // Routing
 APP.get("/api/dev", (req, res) => {
   console.log(req.content);
-  res.status(200).send("Nothing to see here 😳").json("Hello from server!");
+  res.status(200).json({ body: "Hello from server!" });
 });

@@ -6,7 +6,7 @@ function App() {
   useEffect(() => {
     fetch("/api/dev")
       .then((res) => res.json())
-      .then((data) => setContent(data));
+      .then((data) => setContent(data.body));
   }, []);
 
   return (
